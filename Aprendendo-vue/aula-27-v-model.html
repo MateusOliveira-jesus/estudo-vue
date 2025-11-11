@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diretivas: v-bind aula 26</title>
+    <title>Diretivas: v-model aula 27</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
@@ -14,12 +14,12 @@
     <div id="directives" class="text-center flex justify-center">
         <div class="text-left max-w-md border p-5 border-gray-200 hover:text-gray-50">
             <!-- start content -->
-            <h2>Acesse o site abaixo</h2>
-
-            <a v-bind:href="url">Acesse o site aqui</a>
-
-            <p :[arg]="value" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga autem quisquam nulla aliquid cumque sint quaerat aperiam vero nostrum, laudantium veritatis molestias rerum? Quasi quis sed distinctio consequatur laborum? Quo.</p>
-
+            <h3 v-bind:style="{ fontSize: textSize + 'px' }">Mateus Oliveira</h3>
+            <input class="border border-2 border-gray-200 py-1 px-3 mt-2 rounded-lg " type="number" v-model="textSize">
+            <h4 class="mt-5" v-bind:style="{color: textColor}">Que a força esteja com você</h4>
+            <div class="text-center">
+                <input class=" w-full  bg-dark" type="color" name="color" id="colorTeste" v-model="textColor">
+            </div>
             <!-- end content -->
         </div>
     </div>
@@ -29,9 +29,8 @@
         let app = new Vue({
             el: "#directives",
             data: {
-                url: 'https://www.linkedin.com/in/mateusoliveirajesus/',
-              arg:'title',
-              value: 'Páragrafo de exemplo' 
+                textSize: 30,
+                textColor: 'red'
             },
         })
     </script>

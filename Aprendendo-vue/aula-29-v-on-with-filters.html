@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diretivas: v-on aula 29</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-gray-900 text-gray-200">
+    <h1 class="text-center text-gray-200 py-5 text-5xl">Aplication with Vue</h1>
+
+    <div id="directives" class="text-center flex justify-center">
+        <div class="text-left max-w-md border p-5 border-gray-200 hover:text-gray-50">
+            <!-- start content -->
+            <p key="clickPrimary" v-on:click="revertMessage">{{ message }}</p>
+            <p key="clickSecondary" v-on:[eventname]="revertMessage">{{ message }}</p>
+            <hr>
+            <input type="text" placeholder="Digite o seu filtro..." v-on:keyup="filterPersons"
+                class="border  border-gray-200 my-5 rounded-lg py-1 px-5">
+            <hr>
+            <ul class="list-disc ml-5 mt-5">
+                <li v-for="person in personsFiltred">{{person}}</li>
+            </ul>
+            <!-- end content -->
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+    <script>
+        let app = new Vue({
+            el: "#directives",
+            data: {
+                message: 'Vue.js é demais!!!',
+                eventname: 'click',
+                persons: ['Anthony Rafael', 'João Rangel', 'Glaucio Daniel', 'Ronaldo Braz', 'Marcus Ribeiro', 'Djauma Sindeaux'],
+                personsFiltred: []
+            },
+            methods: {
+                revertMessage() {
+                    
+                    this.message = this.message.split('').reverse().join('');
+                },
+                filterPersons(event) {
+                    this.personsFiltred =  this.persons.filter(name=>{
+                        return name.toUpperCase().includes(event.target.value.toUpperCase())
+                    })
+                }
+            },
+            
+            created() {
+                this.personsFiltred = this.persons;
+            },
+        })
+    </script>
+</body>
+
+</html>
