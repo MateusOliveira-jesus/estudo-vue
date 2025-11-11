@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diretivas: v-for aula 25</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-gray-900 text-gray-200">
+    <h1 class="text-center text-gray-200 py-5 text-5xl">Aplication with Vue</h1>
+
+    <div id="directives" class="text-center flex justify-center">
+        <div class="text-left max-w-md border p-5 border-gray-200 hover:text-gray-50">
+            <!-- start content -->
+            <ol>
+                <!-- <li v-for="city in cities"><strong>-</strong> {{city}}</li> array -->
+                 
+                <li v-for="item in cities">
+                    {{item.city}} - {{item.country}}
+                </li>
+
+            </ol>
+
+            <h2 class="text-center" >Grandes filmes da história</h2>
+            <ol>
+                <li v-form="(picture, index) in movies"><strong>{{index}}</strong> {{picture}}</li>
+            </ol>
+            <!-- end content -->
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+    <script>
+        let app = new Vue({
+            el: "#directives",
+            data: {
+                // cities: ['New York', 'São paulo', 'London', 'Rio de Janeiro'] array
+                cities: [
+                    {
+                        city: 'New York',
+                        country: 'EUA'
+                    },
+                    {
+                        city: 'São paulo',
+                        country: 'Brasil'
+                    },
+                    {
+                        city: 'London',
+                        country: 'Inglaterra'
+                    },
+                    {
+                        city: 'Rio de Janeiro',
+                        country: 'Brasil'
+                    },
+                ],
+                movies: ['Star Wars', 'Jurassic Park', 'De volta para o Futuro']
+            },
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtros aula 18</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-gray-900 text-gray-200">
+    <h1 class="text-center text-gray-200 py-5 text-5xl">Aplication with Vue</h1>
+
+    <div id="filters" class="text-center flex justify-center">
+        <div class="text-left max-w-md border p-5 border-gray-200 hover:text-gray-50">
+            <!-- start content -->
+            <h1>Hello {{name |placeholder('Nome não definido.')}}</h1>
+            <p>Hello {{name | upper}}</p>
+            <h2>O meu salário é: {{salary }} {{salary| pluralize(['real', 'reais'])}}</h2>
+            <input class="border border-gray-200 my-3 rounded-md p-2 focus:border-gray-100 hover:border-gray-100" type="text" name="filter_teste" id="filter_teste" placeholder="Digite o seu salário aqui" v-model="salary">
+            <h2>{{msg | truncate(30)}}</h2>
+            <!-- end content -->
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+    <script>
+
+        let app = new Vue({
+            el: "#filters",
+            data: {
+                name: "Mateus Oliveira",
+                salary: 1,
+                msg: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit officiis dolorem fugit deleniti quibusdam ut porro, voluptatum, molestiae numquam veniam inventore in temporibus cupiditate neque! Dolores pariatur repellat ad nulla."
+            },
+            filters: {
+                upper: function (value) {
+                    return value.toUpperCase();
+                },
+                real: function (value) {
+                    return `R$ ${parseInt(value).toFixed(2)}`;
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

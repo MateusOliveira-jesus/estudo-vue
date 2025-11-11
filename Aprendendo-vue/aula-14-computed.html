@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propriedades armazenadas 14</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-gray-900 text-gray-200">
+    <h1 class="text-center text-gray-200 py-5 text-5xl">Aplication with Vue</h1>
+
+    <div id="computed" class="text-center flex justify-center">
+
+        <div class="text-left max-w-md border p-5 border-gray-200 hover:text-gray-50">
+            <h2><strong>Nome:</strong> {{person.firstName }}</h2>
+            <h2><strong>Nome completo com computed (correto):</strong> {{fullName }}</h2>
+            <h2><strong>Nome completo com computed (correto):</strong> {{fullName }}</h2>
+            <h2><strong>Nome completo com computed (correto):</strong> {{fullName }}</h2>
+            <h2><strong>Nome completo com computed (correto):</strong> {{fullName }}</h2>
+            <h2><strong>Nome completo com computed (correto):</strong> {{fullName }}</h2>
+            <h2><strong>Nome completo: com methods (errado):</strong> {{getFullName()}}</h2>
+            <h2><strong>Nome completo: com methods (errado):</strong> {{getFullName()}}</h2>
+            <h2><strong>Nome completo: com methods (errado):</strong> {{getFullName()}}</h2>
+            <h2><strong>Nome completo: com methods (errado):</strong> {{getFullName()}}</h2>
+            <h2><strong>Nome completo: com methods (errado):</strong> {{getFullName()}}</h2>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script>
+        console.log('testando');
+        let app = new Vue({
+            el: "#computed",
+            data: {
+                person: {
+                    firstName: "Mateus",
+                    lastName: "Oliveira",
+                }
+            },
+            methods: {
+                getFullName: function() {
+                    console.log('METHOD');
+                    return `${this.person.firstName} ${this.person.lastName}`;
+                }
+            },
+            computed: {
+                fullName: function () {
+                    console.log('COMPUTED');
+                    return `${this.person.firstName} ${this.person.lastName}`;
+                    // return this.person.firstName + ' '+ this.person.lastName;
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

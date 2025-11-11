@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprendendo vue aula 12</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-gray-900 text-gray-200">
+    <h1 class="text-center text-gray-200 py-5 text-5xl">Aplication with Vue</h1>
+
+    <div id="data_binding">
+        <h2 class="text-center text-gray-100 pt-5 text-5xl" v-bind:title="tagMessage">{{message}}</h2>
+        <h3 class="text-center text-gray-100 pt-5 text-5xl" >Essa mensagem em letras garrafais seria assim: {{message.toUpperCase()}}</h3>
+        <div class="flex justify-center">
+            <div class="max-w-4xl p-5 border border-gray-300 m-5">
+                <p class=" text-gray-200 py-5 text-2xl"><strong>Nome:</strong> {{ person.name}}</p>
+                <p class=" text-gray-200 py-5 text-2xl"><strong>Idade:</strong> {{ person.age}}</p>
+                <span v-html="tag"></span>
+                <!-- //{{tag}} -->
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script>
+        let app = new Vue({
+            el: "#data_binding",
+            data: {
+                message: "test Aplication Vue",
+                person: {
+                    name: "Nome do usuário",
+                    age: 20
+                },
+                tag: "<button class='bg-green-700 py-2 px-5 rounded-lg hover:bg-green-800  hover:cursor-pointer focus:bg-yellow-800' >Clique aqui</button>",
+                tagMessage: "Essa é uma tag de titulo"
+            },
+        })
+    </script>
+</body>
+
+</html>

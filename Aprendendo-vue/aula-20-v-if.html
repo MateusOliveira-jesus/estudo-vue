@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diretivas: v-if e v-else 20</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-gray-900 text-gray-200">
+    <h1 class="text-center text-gray-200 py-5 text-5xl">Aplication with Vue</h1>
+
+    <div id="filters" class="text-center flex justify-center">
+        <div class="text-left max-w-md border p-5 border-gray-200 hover:text-gray-50">
+            <!-- start content -->
+            <h1 v-if="show">Mateus oliveira</h1>
+            <h3 key="available" v-if="tickets >= 10">Há ingressos disponíveis</h3>
+            <h3 v-else-if="tickets >= 1">Os ingressos estão acabando...</h3>
+            <h3 key="empty" v-else>Que pena os ingressos acabaram</h3>
+            <!-- end content -->
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+    <script>
+
+        let app = new Vue({
+            el: "#filters",
+            data: {
+                show: true,
+                tickets: 100
+            },
+
+        })
+    </script>
+</body>
+
+</html>
