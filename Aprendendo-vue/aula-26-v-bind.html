@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diretivas: v-for aula 25</title>
+    <title>Diretivas: v-bind aula 26</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
@@ -14,22 +14,7 @@
     <div id="directives" class="text-center flex justify-center">
         <div class="text-left max-w-md border p-5 border-gray-200 hover:text-gray-50">
             <!-- start content -->
-            <ol>
-                <!-- <li v-for="city in cities"><strong>-</strong> {{city}}</li> array -->
-
-                <li v-for="item in cities">
-                    {{item.city}} - {{item.country}}
-                </li>
-
-            </ol>
-
-            <h2 class="text-center font-bold uppercase mt-5">Grandes filmes da história</h2>
-            <ol>
-                <li v-for="(picture, index) in movies"><strong>{{index}}</strong> {{picture}}</li>
-            </ol>
-            
-            <h2 class=" font-bold uppercase mt-5">Empresa</h2>
-            <p v-for="(value, key, index) in company">{{ key.toUpperCase() }}: {{ value }}</p>
+           
 
 
             <!-- end content -->
