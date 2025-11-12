@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog da Hcode</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <div id="hcode-blog">
+
+        <header>
+            <div class="container">
+                <nav class="navbar justify-content-between py-5 border-bottom">
+                    <a v-bind:href="personAutor.link" v-bind:title="`Ir para o linkedin de ${personAutor.name}`"
+                        class="text-center logo">
+                        <span class="bg-white border border-dark  py-2 pl-5 pr-0 rounded rounded-5  text-white">
+                            <span class="text-dark">{{personAutor.name.split(' ')[0]}}</span>
+                            <strong class="bg-dark py-2 pr-5  rounded-right pl-2">Blog</strong></span>
+                    </a>
+                    <div class="login row gap-2">
+                        <div class="col-6"><input class="form-control " v-model="name" placeholder="Digite seu nome"
+                                type="text" name="Nome do usuário" v-show="!isLogged">
+                        </div>
+                        <div class="col-6 d-flex justify-content-end">
+                            <a href="#" v-bind:class="['btn', classFeefback]" v-on:click.prevent="logger"
+                                :disabled="!name">{{loginFeedBack}}</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <section class="posts">
+
+            <div class="container">
+                <!-- Start FeedBack  -->
+                <div class="row justify-content-center" v-show="isLogged">
+                    <div class="border col-12 border-2 border-success text-center p-5 rounded rounded-5">
+                        <p>Olá! {{name}}, Seja bem vindo!</p>
+                    </div>
+                </div>
+
+                <!-- Start Posts  -->
+                <div v-if="isLogged">
+                    <teste-component v-for="item in contentBlog" v-bind:image_src="item.image"
+                        v-bind:title_component="item.title" v-bind:content_component="item.content"></teste-component>
+                </div>
+                <div v-else>
+                    <div class="border border-dark border-2  p-5 rounded-5 rounded text-center">
+                        <h2 class="text-dark">É necessário logar na aplicação, no menu acima, preencha o formulário e
+                            clique em entrar </h2>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+        <footer class="  container">
+            <div class="d-flex justify-content-between  px-0">
+                <p class="text-center">Desenvolvido por: <a class="btn-sm  btn-dark fs-2"
+                        v-bind:title="`ir para o linkedin de ${personAutor.name}`"
+                        v-bind:href="personAutor.link">{{personAutor.name}}</a>
+                </p>
+                <p class="text-center">Responsáveis do curso: <a href="https://youtube.com/hcodebrasi"
+                        class="btn btn-sm btn-outline-dark">Hcode Treinamentos</a>
+                </p>
+            </div>
+        </footer>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+    <script>
+        Vue.component('teste-component', {
+            props: ['image_src', 'title_component', 'content_component'],
+            template: `
+            <div class="row post-item">
+                    <div class="col-11 row">
+                        <div class="col-6 border border-1 rounded rounded-5 p-2">
+                            <img class="w-100 h-100 object-fit-cover rounded rounded-5" v-bind:src="image_src" v-bind:alt="title_component" v-bind:title="title_component">
+                        </div>
+                        <div class="col-6" >
+                            <h2 v-text="title_component"></h2>
+                            <p v-text="content_component"></p>
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+        let app = new Vue({
+            el: '#hcode-blog',
+            data: {
+                loginFeedBack: 'Entrar',
+                isLogged: false,
+                classFeefback: 'btn-primary',
+                colorFeedback: 'bg-primary-color',
+                personAutor: {
+                    link: 'https://www.linkedin.com/in/mateusoliveirajesus/',
+                    name: 'Mateus Oliveira de jesus',
+                },
+                name: null,
+                contentBlog: [
+                    {
+                        image: './assets/img/post1.webp',
+                        title: 'MySQL no Google Cloud SQL',
+                        content: `Este post é um é um guia passo a passo para você aprender a hospedar o seu banco de dados
+                            MySQL no Google Cloud SQL.
+                            Obviamente você precisa de uma conta no Google e um cartão de crédito para ativar o
+                            faturamento. Se for a primeira vez o Google irá te dar $300 para experimentar qualquer
+                            serviço, assim você pode aprender, conhecer e até avaliar os preços cobrados.
+                            Todos os serviços que você configura no GCloud ficam agrupados por projetos, então a
+                            primeira coisa a se fazer é criar ou selecionar um projeto.`
+                    },
+                    {
+                        image: './assets/img/post2.webp',
+                        title: 'Programação Funcional - Tudo o Que Você Precisa Saber! Artigo 1 de 10',
+                        content: `Olá Pessoal nesta série vamos falar sobre um importante Paradigma de Programação, A
+                            Programação Funcional e como ela é aplicada no JavaScript. Preparamos uma Série de 10
+                            artigos para abordar com exemplos o que é a Programação Funcional, Esse é o primeiro artigo.
+                            Quais são os conceitos que fazem parte desse Paradigma e como Programar em JavaScript
+                            utilizando a Programação Funcional? Veja a resposta nesta série completa.
+
+                            Obs. ao Leitor: Por vezes caro leitor, você verá em nossos posts a sigla TL;DR quando ela
+                            estiver presente prepare-se, vêm texto longo por aí, assim o resumo do post será colocado no
+                            Parágrafo TL;DR algo como Too Long Didn't Read ou Texto Longo, Não Li.`
+                    },
+                    {
+                        image: './assets/img/post3.webp',
+                        title: 'Instalando e Configurando o PHP 7 e o Apache no Windows com Xampp',
+                        content: `PHP 7 é a linguagem por trás dos maiores sites do mundo, entre eles, Facebook, Google,
+                            Wikipedia e muitos outros *. Preparamos um vídeo que faz parte do Curso Completo de PHP 7 da
+                            Hcode na Udemy para ensinar como instalar e configurar o PHP 7 e o Apache utilizando um
+                            facilitador para isso o XAMPP.
+
+                            Existe uma diferença entre Linguagem de Programação e Servidor Web, neste vídeo abordamos a
+                            diferença entre essas tecnologias e o que é um instalador como o XAMPP.`
+                    }
+                ]
+            },
+            methods: {
+                logger(element) {
+                    if (!this.name) {
+                        alert('Preencha o campo de nome, ao lado do botão "Entrar"');
+                        return;
+                    }
+                    if (this.isLogged) {
+                        this.isLogged = false;
+                        this.loginFeedBack = 'Entrar';
+                        this.classFeefback = 'btn-primary';
+                        this.name = null;
+                    } else {
+                        this.isLogged = true;
+                        this.loginFeedBack = 'Sair';
+                        this.classFeefback = 'btn-danger';
+                    }
+                },
+
+            },
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diretivas: personalizadas aula 33</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+</head>
+
+<body class="bg-gray-900 text-gray-200">
+    <h1 class="text-center text-gray-200 py-5 text-5xl">Aplication with Vue</h1>
+
+    <div id="directives" class="text-center flex justify-center">
+        <div class="text-left max-w-md border p-5 border-gray-200 hover:text-gray-50">
+            <!-- start content -->
+            <h2 v-upper>{{name}}</h2>
+            <h6 v-capitalize>Hello word super mario</h6>
+            <input class="border boder-gray-200 p-1 rounded-md" type="text" name="textSize" id="teste" v-model.lazy="argumento">
+            <input class="border boder-gray-200 p-1 rounded-md" type="number" name="testando dois" id="testando" v-model.lazy="distance">
+            <!-- <h6 v-capitalize v-custom:parametro="'informacao'">Hello word super mario</h6> -->
+            <h4 v-custom="{direction: argumento, distance}">{{name}}</h4>
+            <!-- end content -->
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+    <script>
+        Vue.directive('upper', {
+            inserted(el) {
+                el.innerText = el.innerText.toUpperCase();
+            }
+        });
+        function setDirection(element, binding) {
+
+            let direction = '';
+            direction = binding.value.direction.toLowerCase();
+            let value = 0;
+            value = binding.value.distance;
+
+            switch (direction) {
+                case "left":
+                case "right":
+                case "top":
+                case "bottom":
+                    
+                let newDirection = direction.charAt(0).toUpperCase() + direction.slice(1);
+                    eval(`element.style.margin${newDirection} = value + "px"`);
+
+                    break;
+
+                default:
+                    alert('Informe uma opção correta!')
+                    break;
+            }
+
+
+        }
+        let app = new Vue({
+            el: '#directives',
+            data: {
+                name: 'Mateus Oliveira',
+                argumento: 'left',
+                distance: 10
+
+            },
+            directives: {
+                // capitalize: {
+                //     bind(element) {
+                //         console.log('BIND - Fui vinculado ao elemento ')
+                //     },
+                //     inserted(content) {
+                //         console.log('INSERTED - O elemento foi inserido na página')
+
+                //         let words = content.innerText.split(' ');
+                //         words.forEach((text, index) => {
+                //             words[index] = text.charAt(0).toUpperCase() + text.slice(1);
+                //         });
+                //         content.innerText = words.join(' ')
+                //     },
+                //     updated(element) {
+                //         console.log('UPDATE - O elemento foi atualizado')
+                //     },
+                //     unbind(element) {
+                //         console.log('UNBIND - O elemento doi desvinculado')
+                //     },
+                //     componentUpdated(element) {
+                //         console.log('COMPONENT - O Componente foi atualizado')
+                //     },
+                // },
+                custom: {
+                    bind(element, binding, vnode) {
+                        setDirection(element, binding)
+                    },
+                    
+                    update(element, binding, vnode) {
+                        setDirection(element, binding)
+                    }
+                    
+                }
+            }
+        });       
+    </script>
+</body>
+
+</html>
