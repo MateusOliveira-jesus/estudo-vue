@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation com vue: aula 42</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .animation-first-enter-active {
+            animation: animation_first 1s;
+        }
+
+        .animation-first-leave-active {
+            animation: animation_first 1s reverse;
+        }
+
+        @keyframes animation_first {
+            from {
+                background-color: #ffff;
+            }
+
+            to {
+                background-color: #9999;
+            }
+        }
+
+        .animation-second-enter-active {
+            animation: animation_second 1s;
+        }
+
+        .animation-second-leave-active {
+            animation: animation_second 1s ;
+        }
+
+        @keyframes animation_second {
+            0% {
+                background-color: #535353;
+                color: #f5f5f5;
+                font-size: 20px;
+            }
+            
+            50% {
+                background-color: #ffff;
+                font-size: 50px;
+                color: #585858;
+            }
+            100% {
+                background-color: #535353;
+                font-size: 20px;
+                color: #f5f5f5;
+            }
+        }
+    </style>
+
+</head>
+
+<body class="bg-gray-900 text-gray-200">
+    <h1 class="text-center text-gray-200 py-5 text-5xl">Aplication with Vue</h1>
+
+    <div id="animation" class="text-center flex justify-center">
+        <div class="text-left max-w-md border p-5 border-gray-200 hover:text-gray-50">
+            <!-- start content -->
+            <transition name="animation-first">
+                <h2 v-if="show">Mateus Oliveira de jesus</h2>
+            </transition>
+            <hr>
+            <button class="bg-blue-600  py-2 px-4 rounded-lg my-2 w-full hover:bg-blue-700 focus:bg-blue-900"
+                @click="show2 = !show2">Clique aqui</button>
+            <transition name="animation-second">
+                <div v-if="show2">
+                    Vue.js é demais!
+                </div>
+            </transition>
+            <!-- end content -->
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+    <script>
+
+        let app = new Vue({
+            el: '#animation',
+            data: {
+                show: true,
+                show2: false
+            },
+
+        });       
+    </script>
+</body>
+
+</html>

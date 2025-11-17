@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transições com vue: aula 41</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .first-enter-active {
+            transition: opacity .5s ease;
+        }
+
+        .first-leave-active {
+            transition: opacity .5s ease-out;
+        }
+
+        .first-enter,
+        .first-leave-to {
+            opacity: 0;
+        }
+
+        .second-enter-active {
+        transition: all 0.3s linear;
+        }
+        .second-leave-active {
+        transition: all 0.5s linear;
+        }
+
+        .second-enter,
+        .seconde-leave-to {
+            opacity: 0;
+        }
+    </style>
+
+</head>
+
+<body class="bg-gray-900 text-gray-200">
+    <h1 class="text-center text-gray-200 py-5 text-5xl">Aplication with Vue</h1>
+
+    <div id="transitions" class="text-center flex justify-center">
+        <div class="text-left max-w-md border p-5 border-gray-200 hover:text-gray-50">
+            <!-- start content -->
+            <transition name="first">
+                <h2 v-if="show">Mateus Oliveira de jesus</h2>
+            </transition>
+            <hr>
+            <button class="bg-blue-600  py-2 px-4 rounded-lg my-2 w-full hover:bg-blue-700 focus:bg-blue-900" @click="show2 = !show2">Clique aqui</button>
+            <transition name="second">
+                <div v-if="show2">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod maxime aspernatur voluptatibus
+                    aliquam, illum ullam, obcaecati mollitia explicabo nesciunt id ipsum deserunt exercitationem enim.
+                    Cupiditate numquam ratione voluptatum nobis fuga nulla autem hic ut, fugiat, cum non repellat, sunt
+                    amet possimus corrupti explicabo consequuntur temporibus dignissimos odio quod quae. Voluptatum
+                    dolores consectetur rem veniam! Voluptatem sequi quisquam totam a autem rerum, magni, odit soluta,
+                    deserunt sed molestiae. Ad ullam cumque voluptate labore, necessitatibus voluptates nesciunt impedit
+                    sapiente obcaecati odio similique explicabo doloribus velit dolore autem sequi delectus consectetur
+                    provident nulla. Voluptatibus minus deserunt iure corrupti numquam, soluta consectetur doloremque
+                    culpa.
+                </div>
+            </transition>
+            <!-- end content -->
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+    <script>
+
+        let app = new Vue({
+            el: '#transitions',
+            data: {
+                show: true,
+                show2: false
+            },
+
+        });       
+    </script>
+</body>
+
+</html>

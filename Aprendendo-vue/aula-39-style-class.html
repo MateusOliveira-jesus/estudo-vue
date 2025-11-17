@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>style class: aula 39</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+</head>
+
+<body class="bg-gray-900 text-gray-200">
+    <h1 class="text-center text-gray-200 py-5 text-5xl">Aplication with Vue</h1>
+
+    <div id="styles" class="text-center flex justify-center">
+        <div class="text-left max-w-md border p-5 border-gray-200 hover:text-gray-50">
+            <!-- start content -->
+            <h2 v-bind:class="{logged: isLogged }">Seja bem-vindo ao sistema</h2><hr class="my-4">
+            <h3 v-bind:class="classMessage">{{message}}</h3>
+            <!-- end content -->
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+    <script>
+
+        let app = new Vue({
+            el: '#styles',
+            data: {
+
+                isLogged: false,
+                error: false
+            },
+            computed: {
+                message: function () {
+                    return !this.error ? 'Está tudo certo!' : 'foram encontrados erros!';
+                },
+                classMessage: function () {
+                    return !this.error?'bg-green-900 p-5 rounded-lg':'bg-red-900 p-5 rounded-lg';
+                },
+            },
+        });       
+    </script>
+</body>
+
+</html>

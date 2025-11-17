@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>style inline:  aula 37</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+</head>
+
+<body class="bg-gray-900 text-gray-200">
+    <h1 class="text-center text-gray-200 py-5 text-5xl">Aplication with Vue</h1>
+
+    <div id="styles" class="text-center flex justify-center">
+        <div class="text-left max-w-md border p-5 border-gray-200 hover:text-gray-50">
+            <!-- start content -->
+            <input class="border boder-1 border-gray-200 rounded-md p-2 mb-2
+                            focus:border-green-200 focus:outline-none
+                            hover:border-yellow-700" type="number" placeholder="Digite o tamanho da font"
+                v-model.lazy="cssCustom.fontSizeProp">
+                
+                <h2 :style="{fontSize: cssCustom.fontSizeProp + 'px'}">Mateu Oliveira</h2>
+                <hr class="my-4" >
+                <input class="border boder-1 border-gray-200 rounded-md  mb-2 w-full" type="color" placeholder="Digite o tamanho da font"
+                    v-model.lazy="cssCustom.textColorProp">
+            <div :style="{display: cssCustom.displayStyle}" >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae dignissimos placeat voluptatibus consequatur dolorum eaque et hic quo animi dolores accusantium, alias, ad quia? Dolor ex minima perferendis mollitia quidem eligendi nulla sint numquam molestiae voluptas sit incidunt facilis nobis ab quos iste nihil explicabo id expedita delectus, fugit tempora omnis eius repellat. Eaque quaerat minus non deleniti praesentium id iusto eos qui est, distinctio illo ea doloribus nulla error veniam. Maxime dolor id voluptatum sunt, velit asperiores dolorem quasi reprehenderit ipsa voluptatibus vitae, fuga quisquam suscipit sint accusantium aspernatur. Quis unde adipisci, pariatur sit vero ratione debitis minima esse.</div>
+
+
+            <!-- end content -->
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+    <script>
+
+        let app = new Vue({
+            el: '#styles',
+            data: {
+                cssCustom:{
+                    fontSizeProp: 20,
+                    textColorProp: 'red',
+                    displayStyle:['-webkit-box', '-moz-box-flex', '-ms-flexbox'],
+                }
+
+
+            },
+        });       
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation com vue personalizadas: aula 42</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+</head>
+
+<body class="bg-gray-900 text-gray-200">
+    <h1 class="text-center text-gray-200 py-5 text-5xl">Aplication with Vue</h1>
+
+    <div id="animation" class="text-center flex justify-center">
+        <div class="text-left max-w-md border p-5 border-gray-200 hover:text-gray-50">
+            <!-- start content -->
+            <transition name="animation-first" enter-active-class="animate__animated  animate__fadeInLeft"
+                leave-active-class="animate__animated animate__backOutUp">
+
+                <h2 v-if="show">Mateus Oliveira de jesus</h2>
+
+            </transition>
+
+            <button class="py-2 px-4 bg-blue-700 hover:bg-blue-800 focus:bg-blue-900 rounded-lg" @click="show = !show">
+                Mudar animação
+            </button>
+
+            <!-- end content -->
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+    <script>
+
+        let app = new Vue({
+            el: '#animation',
+            data: {
+                show: true,
+                show2: false
+            },
+
+        });       
+    </script>
+</body>
+
+</html>
