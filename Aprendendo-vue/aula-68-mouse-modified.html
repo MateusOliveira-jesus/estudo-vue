@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificadores de teclas do mouse exact Vue.js: aula 68</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+</head>
+
+<body class="bg-gray-900 text-gray-200">
+    <h1 class="text-center text-gray-200 py-5 text-5xl">Aplication with Vue</h1>
+
+    <div id="events" class="text-center flex justify-center">
+        <div class="text-left max-w-md border p-5 border-gray-200 hover:text-gray-50">
+            <!-- start content -->
+            <form action="" class="form" v-on:submit.prevent>
+                <div class="grid grid-cols-4  gap-2">
+
+                    <div class="col-span-2 rows-rowspan-2 ">
+                        <label for="">
+                            Precione as teclas abaixo
+                        </label>
+                        <input placeholder="Precione CTRL" type="text" @keydown.ctrl="exec">
+                    </div>
+                    <div class="col-span-2 rows-rowspan-2 ">
+                        <label for="">
+                            Precione as teclas abaixo
+                        </label>
+                        <input placeholder="Precione Alt" type="text" @keydown.alt="exec">
+                    </div>
+                    <div class="col-span-2 rows-rowspan-2 ">
+                        <label for="">
+                            Precione as teclas abaixo
+                        </label>
+                        <input placeholder="Precione shift" type="text" @keydown.shift="exec">
+                    </div>
+                    <div class="col-span-2 rows-rowspan-2 ">
+                        <label for="">
+                            Precione as teclas abaixo
+                        </label>
+                        <input placeholder="Precione meta" type="text" @keydow.meta="exec">
+                    </div>
+
+                </div>
+                <button @click.prevent="send($event)" type="submit" class="mt-5">Enviar formulário </button>
+            </form>
+            <div class="grid grid-cols-4 my-5 gap-5">
+                <div class="p-2 rounded-lg text-center" @click.ctrl.exact="toglleClass">1</div>
+                <div class="p-2 rounded-lg text-center" @click.ctrl.exact="toglleClass">2</div>
+                <div class="p-2 rounded-lg text-center" @click.ctrl.exact="toglleClass">3</div>
+                <div class="p-2 rounded-lg text-center" @click.ctrl.exact="toglleClass">4</div>
+            </div>
+            <button class="mt-5">Mateus Exemplo</button>
+            <!-- end content -->
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+    <script>
+
+        let app = new Vue({
+            el: '#events',
+            data: {
+
+            },
+            methods: {
+
+                exec(e) {
+                    console.log(e.key);
+                },
+                toglleClass(event) {
+                    let el = event.target.classList;
+                    return el.contains('bg-blue-800') ? el.remove('bg-blue-800') : el.add('bg-blue-800');
+                }
+            },
+
+        });       
+    </script>
+    <script>
+        let estilos;
+        estilos = {
+
+            'button': ["bg-blue-700",
+                "hover:bg-blue-800",
+                "focus:bg-blue-900",
+                "border",
+                "border-2",
+                "border-blue-700",
+                "hover:border-blue-800",
+                "focus:border-blue-900",
+                "text-center",
+                "py-2",
+                "px-4",
+                "w-full",
+                "rounded-full"],
+            'a': ["bg-blue-700",
+                "hover:bg-blue-800",
+                "focus:bg-blue-900",
+                "border",
+                "border-2",
+                "border-blue-700",
+                "hover:border-blue-800",
+                "focus:border-blue-900",
+                "text-center",
+                "py-2",
+                "px-4",
+                "w-full",
+                "rounded-full"],
+            'input': [
+                "border",
+                "border-gray-200",
+                "rounded-lg",
+                "p-2",
+                "focus:border-gray-300",
+                "hover:border-gray-300",
+
+            ],
+            'textarea': [
+                "border",
+                "border-gray-200",
+                "rounded-lg",
+                "p-2",
+                "w-full",
+                "focus:border-gray-300",
+                "hover:border-gray-300",
+
+            ],
+
+        }
+        // adicionando css aos botãoes:
+        adicionarClassElement('button');
+        adicionarClassElement('input');
+        adicionarClassElement('textarea');
+
+
+        function adicionarClassElement(tag, color = null) {
+            document.querySelectorAll(tag).forEach(e => {
+                if (!tag in estilos) {
+                    alert('Não existe estilo para a tag');
+                    return;
+                }
+                estilos[tag].forEach(clas => {
+                    if (color !== null) {
+                        clas = clas.replace(/'blue|gray|red|yellow/g, color)
+                    }
+                    e.classList.add(clas)
+                });
+            })
+        };
+    </script>
+</body>
+
+</html>

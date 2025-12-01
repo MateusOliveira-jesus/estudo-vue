@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objeto evento Vue.js: aula 62</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        .fade-transition-enter-active,
+        .fade-transition-to-active {
+            transition: opacity .3s ease-in-out;
+        }
+
+        .fade-transition-enter,
+        .fade-transition-leave-to {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-gray-200">
+    <h1 class="text-center text-gray-200 py-5 text-5xl">Aplication with Vue</h1>
+
+    <div id="events" class="text-center flex justify-center">
+        <div class="text-left max-w-md border p-5 border-gray-200 hover:text-gray-50">
+            <!-- start content -->
+            <button v-on:click="call" class=" " id="teste">Clique aqui</button>
+            <div id="response"></div>
+
+            <hr class="border border-1 w-full  my-5">
+            <a href="http://testando" target="_blank" rel="noopener noreferrer" v-on:click="call">Clique no link</a>
+            <hr class="border border-1 w-full  my-5">
+            <button class=" ">
+                Mateus Oliveira
+            </button>
+
+            <!-- end content -->
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+    <script>
+
+        let app = new Vue({
+            el: '#events',
+            data: {
+
+            },
+            methods: {
+                call(e) {
+                    e.preventDefault();
+                    document.querySelector('#response').innerHTML = e;
+                }
+            },
+        });       
+    </script>
+    <script>
+        let estiloBtn;
+        estiloBtn = ["bg-blue-700",
+            "hover:bg-blue-800",
+            "focus:bg-blue-900",
+            "border",
+            "border-2",
+            "border-blue-700",
+            "hover:border-blue-800",
+            "focus:border-blue-900",
+            "text-center",
+            "py-2",
+            "px-4",
+            "w-full",
+            "rounded-full"];
+        // adicionando css aos botãoes:
+        adicionarClassElement('button');
+        adicionarClassElement('a', 'green');
+
+        function adicionarClassElement(tag, color = null) {
+            document.querySelectorAll(tag).forEach(e => {
+                estiloBtn.forEach(clas => {
+                    if (color !== null) {
+                        clas = clas.replace('blue', color)
+                    }
+                    e.classList.add(clas)
+                });
+            })
+        };
+    </script>
+</body>
+
+</html>
