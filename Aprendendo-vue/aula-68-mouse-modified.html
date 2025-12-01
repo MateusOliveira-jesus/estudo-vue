@@ -53,6 +53,9 @@
                 <div class="p-2 rounded-lg text-center" @click.ctrl.exact="toglleClass">3</div>
                 <div class="p-2 rounded-lg text-center" @click.ctrl.exact="toglleClass">4</div>
             </div>
+            <div class="bg-gray-800 rounded-lg p-3 border border-2 border-gray-50">
+                <span class="font-bold" id="quantidadeRetorno">Foram selecionados {{countSelected}} numeros</span>
+            </div>
             <button class="mt-5">Mateus Exemplo</button>
             <!-- end content -->
         </div>
@@ -64,16 +67,26 @@
         let app = new Vue({
             el: '#events',
             data: {
-
+                countSelected: 0,
             },
             methods: {
-
                 exec(e) {
                     console.log(e.key);
                 },
+
                 toglleClass(event) {
                     let el = event.target.classList;
-                    return el.contains('bg-blue-800') ? el.remove('bg-blue-800') : el.add('bg-blue-800');
+                    let documentoRetorno = document.querySelector('#quantidadeRetorno');
+                    // let alEl = document.querySelectorAll('.bg-blue-800').length + 1;
+                    
+                    if (el.contains('bg-blue-800')) {
+                        el.remove('bg-blue-800');
+                        this.countSelected = this.countSelected -1;
+                    } else {
+                        el.add('bg-blue-800');
+                        this.countSelected = this.countSelected +1;
+                    }
+
                 }
             },
 
