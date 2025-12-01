@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificadores de teclas do botão do mouse exact Vue.js: aula 69</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+</head>
+
+<body class="bg-gray-900 text-gray-200">
+    <h1 class="text-center text-gray-200 py-5 text-5xl">Aplication with Vue</h1>
+
+    <div id="events" class="text-center flex justify-center">
+        <div class="text-left max-w-md border rounded-sm p-5 border-gray-200 hover:text-gray-50">
+            <!-- start content -->
+            <form action="" class="form" v-on:submit.prevent>
+                <div class="grid grid-cols-4  gap-2">
+
+                    <div class="col-span-2 rows-rowspan-2 ">
+
+                        <input name="primeiro" placeholder="Precione o btn direito do mouse" type="text"
+                            @click.prevent.right="exec">
+                    </div>
+                    <div class="col-span-2 rows-rowspan-2 ">
+
+                        <input name="segundo" placeholder="Precione o btn esquerdo do mouse" type="text"
+                            @click.left="exec">
+                    </div>
+                    <div class="col-span-4 rows-rowspan-4 ">
+                        <input name="terceiro" placeholder="Precione o botão do meio" type="text" @click.middle="exec">
+                    </div>
+                </div>
+                <transition :duration="{enter: 1000, leave: 100}" enter-active-class="animate__animated  animate__pulse"
+                    leave-active-class="animate__animated  animate__pulse">
+                    <div class="bg-gray-800 border mt-5 border-gray-50 border-2 rounded-sm p-5 w-full"
+                        v-show="eventoMouse">
+
+                        <span class="font-bold" id="response"></span>
+                    </div>
+                </transition>
+                <button @click.prevent="" type="submit" class="mt-5">Enviar formulário </button>
+                <button @click.prevent="limpar" type="submit" class="mt-5">Limpar </button>
+            </form>
+
+            <!-- end content -->
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+    <script>
+
+        let app = new Vue({
+            el: '#events',
+            data: {
+                eventoMouse: false,
+                countSelected: 0,
+            },
+            methods: {
+                limpar() {
+                  return  this.eventoMouse = false;
+                },
+                exec(e) {
+                    this.eventoMouse = true;
+                    document.querySelector("#response").innerHTML = e.type;
+                }
+            },
+
+
+        });       
+    </script>
+    <script>
+        let estilos;
+        estilos = {
+
+            'button': ["bg-blue-700",
+                "hover:bg-blue-800",
+                "focus:bg-blue-900",
+                "border",
+                "border-2",
+                "border-blue-700",
+                "hover:border-blue-800",
+                "focus:border-blue-900",
+                "text-center",
+                "py-2",
+                "px-4",
+                "w-full",
+                "rounded-full"],
+            'a': ["bg-blue-700",
+                "hover:bg-blue-800",
+                "focus:bg-blue-900",
+                "border",
+                "border-2",
+                "border-blue-700",
+                "hover:border-blue-800",
+                "focus:border-blue-900",
+                "text-center",
+                "py-2",
+                "px-4",
+                "w-full",
+                "rounded-full"],
+            'input': [
+                "border",
+                "border-gray-200",
+                "rounded-lg",
+                "p-2",
+                "w-full",
+                "focus:border-gray-300",
+                "hover:border-gray-300",
+
+            ],
+            'textarea': [
+                "border",
+                "border-gray-200",
+                "rounded-lg",
+                "p-2",
+                "w-full",
+                "focus:border-gray-300",
+                "hover:border-gray-300",
+
+            ],
+
+        }
+        // adicionando css aos botãoes:
+        adicionarClassElement('button');
+        adicionarClassElement('input');
+        adicionarClassElement('textarea');
+
+
+        function adicionarClassElement(tag, color = null) {
+            document.querySelectorAll(tag).forEach(e => {
+                if (!tag in estilos) {
+                    alert('Não existe estilo para a tag');
+                    return;
+                }
+                estilos[tag].forEach(clas => {
+                    if (color !== null) {
+                        clas = clas.replace(/'blue|gray|red|yellow/g, color)
+                    }
+                    e.classList.add(clas)
+                });
+            })
+        };
+    </script>
+</body>
+
+</html>
