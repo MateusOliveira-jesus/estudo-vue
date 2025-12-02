@@ -1,28 +1,27 @@
 <template>
   <div id="app">
-    <div class="min-h-screen bg-gray-50">
-      <div class="max-w-7x1 mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <AppHeader />
-        <AppFooter />
+    <AppHeader />
+    <div class="bg-gray-50">
+      <div class="sm:py-20 py-5">
+        <AppSection />
       </div>
     </div>
+    <AppFooter />
   </div>
 </template>
 
 <script>
-import AppHeader from "./components/AppHeader.vue";
-import AppFooter from "./components/AppFooter.vue";
+import AppHeader from "./components/AppHeader";
+import AppFooter from "./components/AppFooter";
+import AppSection from "./components/AppSection";
 export default {
   name: "App",
   components: {
     AppHeader,
     AppFooter,
+    AppSection,
   },
-  computed: {
-    nome() {
-      return process.env.VUE_APP_NOME || "NameApp Não definido";
-    },
-  },
+  
 };
 </script>
 
