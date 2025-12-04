@@ -1,9 +1,18 @@
 <template>
   <div id="app">
-    <AppHeader />
+    
+    <AppHeader
+      :array-segmento="arraySegmento"
+      @select-campo="changeTitle"
+      @option-select-array="arraySelectMounted"
+    />
     <div class="bg-gray-50">
       <div class="sm:py-20 py-5">
-        <AppSection />
+        <AppSection
+          :campo-selected="campoSelected"
+          :filter-campo="campoSelected"
+          @array-segmento="arraySegmentoGet"
+        />
       </div>
     </div>
     <AppFooter />
@@ -21,7 +30,23 @@ export default {
     AppFooter,
     AppSection,
   },
-  
+  data() {
+    return {
+      campoSelected: null,
+      arraySegmento: null,
+    };
+  },
+  methods: {
+    changeTitle(value) {
+      this.campoSelected = value;
+    },
+    arraySelectMounted(value) {
+      this.campoSelected = value[0].indice;
+    },
+    arraySegmentoGet(value) {
+      this.arraySegmento = value;
+    },
+  },
 };
 </script>
 
